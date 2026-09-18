@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Habits & Workouts</title>
+<!-- PWA Home Screen Tags for your 45lb Plate Icon -->
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="icon" type="image/png" sizes="192x192" href="logo.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <style>
   :root {
@@ -1706,17 +1712,286 @@
   renderQuests();
   applyTheme();
   renderThemes();
-})();
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FitTrackerPRO</title>
+    
+    <!-- PWA Home Screen Tags -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <style>
+        /* Global Mobile Settings */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #0b0f12; /* Dark theme so the pastel colors pop */
+            color: #ffffff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* App Container */
+        .app-container {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Light Blue Gradient Header */
+        header {
+            background: linear-gradient(135deg, #add8e6, #e0f7fa);
+            padding: 25px;
+            border-radius: 20px;
+            color: #111;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(173, 216, 230, 0.2);
+        }
+
+        header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Forms and Cards */
+        .card {
+            background-color: #161c22;
+            border: 1px solid #222c35;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #add8e6; /* Light Blue accent */
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 12px;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        input, select {
+            background-color: #1c2630;
+            border: 1px solid #2d3d4f;
+            border-radius: 10px;
+            padding: 12px;
+            color: white;
+            font-size: 16px;
+            width: 100%;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        input:focus {
+            border-color: #90ee90; /* Light green focus highlight */
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Light Green Button */
+        .btn-submit {
+            background-color: #90ee90;
+            color: #111;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.2s;
+            margin-top: 5px;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+
+        /* Workout Log List */
+        .workout-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Light Orange Workout Card */
+        .workout-item {
+            background-color: #1c2630;
+            border-left: 5px solid #ffdab9; /* Light orange decorative edge */
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .workout-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .workout-info p {
+            font-size: 13px;
+            color: #a0aec0;
+        }
+
+        .workout-meta {
+            text-align: right;
+        }
+
+        .workout-meta .weight {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffdab9; /* Light orange text highlight */
+        }
+
+        .workout-meta .sets {
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Dashboard Header -->
+        <header>
+            <h1>FitTrackerPRO</h1>
+            <p>Your Personal Strength Dashboard</p>
+        </header>
+
+        <!-- Log Workout Section -->
+        <div class="card">
+            <h2>Log Today's Lift</h2>
+            <form id="workoutForm">
+                <div class="input-group">
+                    <label for="exercise">Exercise Name</label>
+                    <input type="text" id="exercise" placeholder="e.g., Bench Press, Squat" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="input-group" style="flex: 1;">
+                        <label for="weight">Weight (lbs)</label>
+                        <input type="number" id="weight" placeholder="45" min="0" required>
+                    </div>
+                    <div class="input-group" style="flex: 1;">
+                        <label for="sets">Sets</label>
+                        <input type="number" id="sets" placeholder="4" min="0" required>
+                    </div>
+                    <div class="input-group" style="flex: 1;">
+                        <label for="reps">Reps</label>
+                        <input type="number" id="reps" placeholder="10" min="0" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Log Workout</button>
+            </form>
+        </div>
+
+        <!-- History Log Section -->
+        <div class="card">
+            <h2>Recent Activity</h2>
+            <div class="workout-list" id="logContainer">
+                <!-- Example starter item -->
+                <div class="workout-item">
+                    <div class="workout-info">
+                        <h3>Barbell Back Squat</h3>
+                        <p>Legs Day</p>
+                    </div>
+                    <div class="workout-meta">
+                        <div class="weight">225 lbs</div>
+                        <div class="sets">4 sets x 8 reps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Interactive Logging JavaScript functionality -->
+    <script>
+        document.getElementById('workoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Grab inputs
+            const exercise = document.getElementById('exercise').value;
+            const weight = document.getElementById('weight').value;
+            const sets = document.getElementById('sets').value;
+            const reps = document.getElementById('reps').value;
+            
+            // Create a custom item element
+            const newLog = document.createElement('div');
+            newLog.className = 'workout-item';
+            newLog.innerHTML = `
+                <div class="workout-info">
+                    <h3>${exercise}</h3>
+                    <p>Strength Training</p>
+                </div>
+                <div class="workout-meta">
+                    <div class="weight">${weight} lbs</div>
+                    <div class="sets">${sets} sets x ${reps} reps</div>
+                </div>
+            `;
+            
+            // Prepend to top of activity log stack
+            const container = document.getElementById('logContainer');
+            container.insertBefore(newLog, container.firstChild);
+            
+            // Clear input fields
+            document.getElementById('workoutForm').reset();
+        });
+    </script>
+
 </body>
 </html>
-<!-- Link to your customization layout -->
-<link rel="manifest" href="manifest.json">
 
-<!-- Mobile Home Screen Icons -->
-<link rel="apple-touch-icon" href="logo.png">
-<link rel="icon" type="image/png" sizes="192x192" href="logo.png">
-
-<!-- Status Bar customization for iOS mobile view -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
